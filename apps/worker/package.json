@@ -5,7 +5,7 @@
   "type": "module",
   "main": "dist/main.cjs",
   "scripts": {
-    "dev": "tsx watch src/main.ts",
+    "dev": "cd ../.. && tsx watch apps/worker/src/main.ts",
     "start": "node --enable-source-maps dist/main.cjs",
     "build": "esbuild src/main.ts --bundle --platform=node --format=cjs --target=node22 --alias:@traibox/contracts=../../packages/contracts/src/index.ts --alias:@traibox/db=../../packages/db/src/index.ts --alias:@traibox/profiles=../../packages/profiles/src/index.ts --sourcemap --outfile=dist/main.cjs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
