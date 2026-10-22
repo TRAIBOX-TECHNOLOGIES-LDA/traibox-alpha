@@ -6,16 +6,18 @@
 
 <!-- List what is deliberately included and excluded. -->
 
-## Governing specifications
+## Direction and governing decisions
 
-<!-- Cite exact paths/sections and their source-of-truth status. REVIEW, SUPERSEDED, ARCHIVED, and PENDING_IMPORT are not authority. -->
+<!-- Link the founder brief this PR follows, and cite any decision-ledger entries or ADRs applied. REVIEW, SUPERSEDED, ARCHIVED, and PENDING_IMPORT material is context, not authority. -->
 
-| Specification or ADR | Status | Section(s) applied |
-| -------------------- | ------ | ------------------ |
-|                      |        |                    |
+- Founder brief: <!-- issue, message, or session instruction -->
 
-- Source-of-truth conflict found: <!-- none, or describe -->
-- Missing canonical source affecting this PR: <!-- none, or describe -->
+| Decision-ledger entry or ADR | Status | Section(s) applied |
+| ---------------------------- | ------ | ------------------ |
+|                              |        |                    |
+
+- Open product decisions (marked `PROVISIONAL:` in code): <!-- none, or list each with the choice made -->
+- Conflict between founder instructions: <!-- none, or describe -->
 
 ## Architecture impact
 
