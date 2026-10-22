@@ -2,35 +2,33 @@
 
 - Status: **CANONICAL** for repository governance
 - Status semantics: **intended post-approval**
-- Decision: **C0.1**
+- Decision: **C0.5** (revises C0.1)
 - Owner: **@jeszymczuk**
-- Effective when: **PR #38 is approved and merged into `main` by the repository owner**
-- Founder approval record: **the merge of PR #38**
+- Effective when: **PR #42 is approved and merged into `main` by the repository owner**
+- Founder approval record: **the merge of PR #42**
 - Draft branch authority: **none over `main`**
+
+`AGENTS.md` is the short form of this constitution. If the two ever disagree, stop and report the exact sections.
 
 ## 1. Purpose and authority
 
-Upon activation, this constitution establishes the enforceable product, architecture, security, data, and development baseline for this repository. It governs how implementation authority is selected; it does not fabricate the missing product chapters listed in `source-of-truth.yaml`.
+This constitution sets the engineering, security, data and development baseline for this repository and says where product direction comes from. C0.1 (PR #38, July 2026) ranked twelve Blueprint chapters above the code and made their absence a reason to stop. None of those chapters was ever imported, and the founder has since reopened the TRAIBOX concept itself, so C0.5 replaces that ranking.
 
-All statuses recorded by C0.1 are the intended statuses after approval. This constitution and the accompanying C0.1 decisions become effective only when PR #38 is approved and merged into `main` by the repository owner. The unmerged draft branch has no authority over `main`; the merge of PR #38 is the founder approval record for C0.1.
+TRAIBOX is being redefined. The concept (Blueprint Ch.0) is under revision, the Blueprint is being revised and completed, and the next goal is a well-defined, workable product that people can start using and pay for. Product decisions are therefore open unless `docs/governance/decision-ledger.md` lists them as locked. The engineering safety rules in sections 4 to 8 are locked regardless of the concept.
 
-The precedence order is:
+Three product principles are locked in the ledger and bind all code: TRAIBOX is global by design, so geography, currency, language, payment scheme and jurisdiction are configuration and never defaults (P-06); personas and scenarios are illustrative fiction, never defaults or rules (P-07); and compliance rules are versioned rule-pack data with explicit jurisdiction and trade conditions (P-08).
 
-1. Ch.0 — TRAIBOX Vision, Mission and Why We Exist
-2. Product Architecture v6.1
-3. v7 Pilot-Ready Architecture Cut
-4. reconciled Ch.2 Experience System
-5. Ch.17 v3 Frontend Architecture
-6. Ch.17.A Screen and Component Contracts
-7. Ch.16 Technology Architecture plus approved ADRs
-8. Ch.18 Security and Privacy
-9. Ch.26 pilot delivery baseline
-10. Ch.28 QA and release readiness
-11. active Ch.31 roadmap
-12. domain chapters and annexes
-13. executable repository contracts, migrations, and tests
+The order of authority is:
 
-When two sources at different levels disagree, the higher source governs. When two genuinely authoritative sources at the same level disagree, implementation stops until the conflict is resolved or formally recorded by an approved governance decision.
+1. the founder's current brief for the task (issue, PR description, or session instruction); the latest explicit founder statement wins;
+2. `docs/governance/decision-ledger.md` — the decisions that are actually locked;
+3. the revised Ch.0 concept, once approved and imported (`PENDING_IMPORT`);
+4. the revised and completed Blueprint, once approved and imported (`PENDING_IMPORT`);
+5. approved engineering ADRs;
+6. executable repository contracts, migrations, and tests (implementation evidence, never product direction);
+7. Blueprint v6.1 and v7.0 chapters and other non-authoritative material (context and vocabulary only).
+
+When a product decision is open or a written source is missing, work continues: make the smallest reasonable choice that keeps options open, mark it `PROVISIONAL:` in code and in the pull request, and list it under open product decisions. Do not fabricate product meaning or present a reconstruction as authoritative.
 
 ## 2. Document lifecycle
 
@@ -39,37 +37,27 @@ Only these uppercase statuses are valid:
 - `CANONICAL`: controlling source at its declared scope.
 - `APPROVED`: accepted implementation authority at its declared scope.
 - `REVIEW`: proposal or evidence awaiting approval; not implementation authority.
-- `SUPERSEDED`: replaced historical material; never current authority.
-- `ARCHIVED`: retained historical material; never current authority.
-- `PENDING_IMPORT`: known authoritative material is unavailable; do not reconstruct it.
+- `SUPERSEDED`: replaced historical material; context only.
+- `ARCHIVED`: retained historical material; context only.
+- `PENDING_IMPORT`: known source not yet available in the repository; its absence does not block work.
 
-`REVIEW`, `SUPERSEDED`, `ARCHIVED`, and `PENDING_IMPORT` material governs only when an approved decision activates a specific, named section. Repository contracts and tests reveal implementation reality but never silently override approved product architecture.
+`REVIEW`, `SUPERSEDED`, `ARCHIVED`, and `PENDING_IMPORT` material governs only when an approved decision or the founder's current brief activates a specific, named section. Repository contracts and tests reveal implementation reality but never lock product decisions.
 
-The repository does not currently contain verified authoritative copies of Ch.0, Product Architecture v6.1, the v7 cut, reconciled Ch.2, Ch.17 v3, Ch.17.A, Ch.16, Ch.18, Ch.26, Ch.28, or active Ch.31. Their status is `PENDING_IMPORT`. The local Ch.17.A “Implementation Copy” is `REVIEW`, not a substitute for the authoritative source.
+## 3. Product structure (working defaults)
 
-## 3. Product architecture
+### 3.1 Workspaces
 
-### 3.1 Canonical workspaces
+The current navigation has seven customer workspaces: Intelligence, Trades, Finance, Network, Clearance, Operations Center, and Settings. Payments sits inside Finance; Inbox is not a top-level workspace; partner and financier experiences use separate role-specific shells, permissions, and information architecture.
 
-TRAIBOX has seven canonical customer workspaces:
+This structure is the working default, not a locked product decision. It may change with the revised concept. Do not add, remove, or rename top-level workspaces unless the founder's brief says so.
 
-1. Intelligence
-2. Trades
-3. Finance
-4. Network
-5. Clearance
-6. Operations Center
-7. Settings
+### 3.2 Routes and screens
 
-Payments is a Finance capability, not a top-level customer workspace. Inbox is not a canonical top-level workspace. Partner and financier experiences use separate role-specific shells, permissions, and information architecture.
+Every production route is registered in `route-manifest.yaml`, which CI checks for exact coverage. A route declares its workspace, audience, role and tenant behavior, and implements loading, empty, error, permission-denied, degraded, accessibility, and responsive behavior. Link a screen contract when one exists; while the concept is being redefined, a `missing` screen contract is acceptable when the pull request describes the intended behavior.
 
-The route reality and compatibility decisions are recorded in `route-manifest.yaml`. Existing drift may remain until an approved remediation PR; this constitution does not authorize redirects or behavior changes.
+### 3.3 Visual design
 
-### 3.2 Route and component gates
-
-No production route may be added without manifest registration, an approved screen contract, workspace ownership, audience and role behavior, tenant behavior, loading/empty/error/permission-denied/degraded states, accessibility expectations, and responsive evidence.
-
-Ch.17 v3 and Ch.17.A must be imported and reconciled before their contents are used as authority. Until then, new production routes are blocked unless an approved governance decision provides a complete route-specific screen contract. After authoritative Ch.17.A import, no shared production component may be introduced without a component contract.
+Design System v2 tokens and shared primitives are the working implementation (ADR-006, superseding ADR-005). UI work composes semantic tokens rather than hard-coded values, and the component-token audit stays in CI. The visual language itself is open and changes through the founder's design brief by editing the tokens, without a superseding ADR.
 
 ## 4. Pilot system architecture
 
@@ -92,22 +80,11 @@ Fastify is approved as the pilot modular monolith by ADR-001. NestJS is a review
 
 ## 5. Authenticated browser boundary
 
-ADR-004 defines the intended boundary: a thin Next.js BFF with secure, server-managed sessions.
+ADR-004 defines the boundary: a thin Next.js BFF with secure, server-managed sessions.
 
 The BFF may manage sessions, attach credentials, correlate requests, proxy SSE, normalize transport, and safely normalize errors. It may not contain domain decisions, Finance calculations, approval decisions, canonical state ownership, protected-action logic, agent authorization decisions, or provider-specific business policy.
 
-Sensitive credentials, access tokens, refresh tokens, and private trade transcripts must not be stored in `localStorage`, `sessionStorage`, or IndexedDB. Authentication tokens must not appear in URL query strings except for an explicitly approved, short-lived, single-purpose signed artifact URL.
-
-Current implementation evidence requiring remediation:
-
-- Supabase session persistence and copied user access tokens use browser storage.
-- partner access tokens use `localStorage`.
-- SSE and file-download helpers put user tokens in query strings.
-- external participant tokens are accepted from a page query string.
-- Intelligence stream transcripts are persisted in `localStorage`.
-- browser components call the application API directly rather than through a BFF.
-
-These are observed compatibility risks, not approved patterns. C0.1 records them and changes no runtime behavior.
+Sensitive credentials, access tokens, refresh tokens, and private trade transcripts must not be stored in `localStorage`, `sessionStorage`, or IndexedDB. Authentication tokens must not appear in URL query strings except for an explicitly approved, short-lived, single-purpose signed artifact URL. `docs/governance/browser-security-boundary.md` records the C0.4 remediation of the browser-storage and query-token findings originally listed under C0.1.
 
 ## 6. Agents and protected actions
 
@@ -129,41 +106,33 @@ Provider implementations remain behind provider-neutral ports and adapters. Exte
 
 ## 9. Development governance
 
-An architecture deviation requires an ADR. One implementation agent authors a workstream; another may review it. Claude Code and Codex must not independently implement the same workstream in parallel.
+An engineering architecture deviation requires an ADR; product and design decisions do not, and the locked ones are recorded in the decision ledger. One implementation agent authors a workstream; another may review it. Claude Code and Codex must not independently implement the same workstream in parallel.
 
-Contributors stop and report contradictory authoritative instructions rather than selecting silently. Pull requests must identify governing specifications, source status, architecture, routes, protected actions, security/privacy, migrations/RLS, screen/component contracts, providers, validation, compatibility, rollback, and unresolved conflicts.
+Stubs, mocks and scaffolding are labelled as such in code, ADRs, and user-facing copy; no hollow capability claims. Pull requests identify the brief or ledger entries they follow, architecture, routes, protected actions, security/privacy, migrations/RLS, providers, validation, compatibility, rollback, open product decisions, and anything marked `PROVISIONAL:`.
 
-## 10. Recorded baseline conflicts
+Contributors stop and report when an action is destructive or irreversible, a protected-action, security or tenant-isolation boundary cannot be kept, unrelated work risks loss, permissions block safe progress, or two founder instructions directly contradict each other. An open product decision or a missing Blueprint chapter is not a reason to stop.
 
-The following conflicts are baseline evidence. Items explicitly closed by later governed C0 work are annotated; the remaining entries are not changes authorized by the constitution itself:
+## 10. Known implementation drift (evidence, not authority)
 
-1. The current navigation exposes Payments and Inbox as top-level workspaces, contrary to the seven-workspace model.
-2. `/operations` and `/operations-center` are separate implemented screens; only Operations Center is canonical.
-3. legacy `/intelligence/workspace`, `/finance/workspace`, `/network/workspace`, and `/clearance/workspace` routes remain implemented without redirects.
-4. the Ch.17.A implementation copy calls itself active and the design tokens cite a missing Ch.17 section; ADR-005 activates Design System v2 while the missing chapters remain `PENDING_IMPORT`.
-5. direct browser token storage, token-in-query transport, and direct API access conflict with ADR-004.
-6. **Closed by C0.3 evidence:** direct and payment-intent execution now share exact approval/action/target/payload consumption, immutable payment-policy binding, and provider-capability enforcement.
-7. **Closed by C0.3 evidence:** funding-offer acceptance now binds frozen terms to an approval and immutable consumption; success creates only the reservation, audit, and events, while elapsed active reservations transition to historical `expired` state.
-8. the shared contract declares more protected actions than the API catalog annotates; proof share requests exist in Fastify but are absent from the executable endpoint catalog.
+Recorded so it is not mistaken for intended design:
+
+1. The left navigation on `main` exposes Payments and Inbox as top-level items and mixes internal surfaces (My Space, Internal Alpha, UI Demo, Partner Portal) with customer workspaces. A fix exists as a local, unpushed commit (`fix(web): conform left navigation`) and has not reached `main`.
+2. `/operations` and `/operations-center` are separate implemented screens.
+3. Legacy `/intelligence/workspace`, `/finance/workspace`, `/network/workspace`, and `/clearance/workspace` routes remain implemented without redirects.
+4. The shared contract declares more protected actions than the API catalog annotates; proof share requests exist in Fastify but are absent from the executable endpoint catalog.
+5. The Ch.17.A implementation copy in `docs/frontend/` calls itself active; it is `REVIEW` and is context only.
+6. Regional and scenario defaults are hard-coded, contrary to P-06 to P-08: corridor falls back to `'PT-ES'` in the API and web trade workflow, currency defaults to `'EUR'`, payment scheme types allow only SEPA variants, and the clearance rules trigger CBAM from product keywords or HS codes alone. The database schema itself has no regional constraint.
+
+Items closed by earlier governed work (C0.3 protected-action repair and C0.4 browser boundary) are recorded in their pull requests.
 
 ## 11. Pull-request and validation gate
 
-Use `.github/pull_request_template.md`. Run applicable YAML parsing, formatting, lint, typecheck, tests, Trade Brain tests, Trade Brain evaluation, and build checks without production credentials. Report all failures and classify them as introduced, pre-existing, credential-related, tooling-related, or unrelated.
+Use `.github/pull_request_template.md`. Run applicable YAML parsing, formatting, conformance, lint, typecheck, tests, Trade Brain tests, Trade Brain evaluation, and build checks without production credentials. Report all failures and classify them as introduced, pre-existing, credential-related, tooling-related, or unrelated.
 
-PR #26 is superseded historical context and not authority. PR #30 is an unmerged source branch and must not be merged or copied wholesale. Neither may be modified by governance work.
+PR #26 is superseded historical context and not authority. PR #30 is an unmerged source branch and must not be merged or copied wholesale.
 
-## 12. C0 dependency boundary
+## 12. Conformance boundary
 
-After C0.1 is activated, C0.2 may proceed with structural conformance that tests repository evidence against the approved manifests without deciding missing product meaning. This scope includes:
+Structural conformance (manifest schemas, exact route and protected-action coverage, ADR registration, API catalog/server alignment, status-vocabulary drift, lint tooling, design-token usage, browser security, release integrity) runs in CI and must pass.
 
-- manifest schema validation;
-- exact route coverage;
-- exact protected-action coverage;
-- ADR registration;
-- API catalog/server alignment;
-- status-vocabulary drift; and
-- restoration of repository lint tooling.
-
-Semantic conformance remains blocked until the relevant priority canonical documents are imported and approved. Blocked scope includes final route ownership and redirect decisions, screen and component contracts, responsive and interaction semantics, final workspace behavior, and product-meaning validations derived from Ch.17 v3, Ch.17.A, and higher-precedence product sources.
-
-C0.2 must not infer missing product semantics from implementation reality. It may report structural drift but may not silently convert observed implementation into product authority or “fix” runtime behavior.
+Semantic conformance (final route ownership and redirects, screen and component contracts, interaction semantics, final workspace behavior, product-meaning validations) is deferred until the revised Ch.0 and Blueprint are approved and imported. Deferral never blocks product work, and conformance checks must not promote observed behavior into product authority.

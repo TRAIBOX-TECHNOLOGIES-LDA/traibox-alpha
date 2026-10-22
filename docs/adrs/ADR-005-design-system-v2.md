@@ -1,6 +1,7 @@
 # ADR-005: Design System v2
 
-- Status: Accepted
+- Status: Superseded
+- Superseded by: ADR-006 (Design System v2 as working implementation; visual language open), 2026-10-22
 - Status semantics: intended post-approval
 - Date: 2026-07-13
 - Owners: @jeszymczuk
