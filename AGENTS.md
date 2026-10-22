@@ -9,6 +9,9 @@ TRAIBOX is being redefined. The concept (Blueprint Ch.0) is under revision, the 
 - **Nothing at product level is locked** unless it is in `docs/governance/decision-ledger.md`. Positioning, category, wedge, customer, workspace structure, screens, flows, visual language and the demo are all open.
 - **Past material is context, not commitment.** Notion Blueprint v6.1/v7.0 chapters, old branches, PR #26/#30, repository docs marked `REVIEW`, and earlier chat output are explorations. Use them for ideas and vocabulary; do not treat them as requirements, and do not defend them against a newer founder instruction.
 - **TRAIBOX is not a compliance product, a payments product or a finance product.** Those are capabilities it may contain. Do not frame code, copy, naming or UI around any one of them as the product's identity.
+- **TRAIBOX is global by design.** Never hard-code or default a country, corridor, region, currency, language, payment scheme or jurisdiction (for example `'PT-ES'`, `'EUR'`, SEPA-only types). These come from the trade, the organisation or a deployment profile. A market rollout order is a go-to-market step, never product scope.
+- **Personas and scenarios are illustrative fiction.** Maria, TRX-00455 and similar examples may appear in fixtures, tests and demos, never as defaults or rules in product code.
+- **Compliance rules are data.** Sanctions, export controls, customs, CBAM and every other rule live in versioned rule packs with explicit jurisdiction and trade conditions. Do not hard-code a rule's trigger, and do not give any one rule special prominence.
 - **The current demo and `/alpha` story will be replaced** once Ch.0 is resolved. Do not invest in polishing them unless the task asks for it.
 - **The engineering safety rules in §2–§5 are locked regardless.** They protect customers' data, money and trust whatever the product becomes.
 

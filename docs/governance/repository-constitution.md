@@ -16,6 +16,8 @@ This constitution sets the engineering, security, data and development baseline 
 
 TRAIBOX is being redefined. The concept (Blueprint Ch.0) is under revision, the Blueprint is being revised and completed, and the next goal is a well-defined, workable product that people can start using and pay for. Product decisions are therefore open unless `docs/governance/decision-ledger.md` lists them as locked. The engineering safety rules in sections 4 to 8 are locked regardless of the concept.
 
+Three product principles are locked in the ledger and bind all code: TRAIBOX is global by design, so geography, currency, language, payment scheme and jurisdiction are configuration and never defaults (P-06); personas and scenarios are illustrative fiction, never defaults or rules (P-07); and compliance rules are versioned rule-pack data with explicit jurisdiction and trade conditions (P-08).
+
 The order of authority is:
 
 1. the founder's current brief for the task (issue, PR description, or session instruction); the latest explicit founder statement wins;
@@ -119,6 +121,7 @@ Recorded so it is not mistaken for intended design:
 3. Legacy `/intelligence/workspace`, `/finance/workspace`, `/network/workspace`, and `/clearance/workspace` routes remain implemented without redirects.
 4. The shared contract declares more protected actions than the API catalog annotates; proof share requests exist in Fastify but are absent from the executable endpoint catalog.
 5. The Ch.17.A implementation copy in `docs/frontend/` calls itself active; it is `REVIEW` and is context only.
+6. Regional and scenario defaults are hard-coded, contrary to P-06 to P-08: corridor falls back to `'PT-ES'` in the API and web trade workflow, currency defaults to `'EUR'`, payment scheme types allow only SEPA variants, and the clearance rules trigger CBAM from product keywords or HS codes alone. The database schema itself has no regional constraint.
 
 Items closed by earlier governed work (C0.3 protected-action repair and C0.4 browser boundary) are recorded in their pull requests.
 
