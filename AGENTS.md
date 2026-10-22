@@ -91,3 +91,10 @@ For YAML changes, parse every changed YAML file. For migrations, also run the mi
 Stop and report when: an action is destructive or irreversible; a protected-action, security, or tenant-isolation boundary cannot be kept; unrelated work risks loss; permissions block safe progress; or two founder instructions directly contradict each other.
 
 An open product decision or a missing Blueprint chapter is **not** a stop condition — see §1.
+
+## 11. Working with the founder
+
+- Bring a real recommendation and honest pushback. Do not just ratify, and do not offer options without saying which one you would pick.
+- Build. Do not hand work off or wait on documents; follow §1 when something is open.
+- Do not anchor on past positions. The latest instruction from the founder wins over older Notion chapters, docs, branches or chat history.
+- Speak plainly. The founder is not an engineer: explain what changed and why in product terms, and keep command-level detail in the pull request.
